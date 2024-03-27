@@ -10,6 +10,7 @@
 		44A01A712BB45F020093E53C /* CatalogueCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A01A682BB45F020093E53C /* CatalogueCore.framework */; };
 		44A01A762BB45F020093E53C /* CatalogueCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A752BB45F020093E53C /* CatalogueCoreTests.swift */; };
 		44A01A772BB45F020093E53C /* CatalogueCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 44A01A6B2BB45F020093E53C /* CatalogueCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		44A01A822BB464FC0093E53C /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A812BB464FC0093E53C /* Sport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +28,7 @@
 		44A01A6B2BB45F020093E53C /* CatalogueCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatalogueCore.h; sourceTree = "<group>"; };
 		44A01A702BB45F020093E53C /* CatalogueCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatalogueCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A01A752BB45F020093E53C /* CatalogueCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueCoreTests.swift; sourceTree = "<group>"; };
+		44A01A812BB464FC0093E53C /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 		44A01A6A2BB45F020093E53C /* CatalogueCore */ = {
 			isa = PBXGroup;
 			children = (
+				44A01A802BB464B90093E53C /* Sports */,
 				44A01A6B2BB45F020093E53C /* CatalogueCore.h */,
 			);
 			path = CatalogueCore;
@@ -80,6 +83,14 @@
 				44A01A752BB45F020093E53C /* CatalogueCoreTests.swift */,
 			);
 			path = CatalogueCoreTests;
+			sourceTree = "<group>";
+		};
+		44A01A802BB464B90093E53C /* Sports */ = {
+			isa = PBXGroup;
+			children = (
+				44A01A812BB464FC0093E53C /* Sport.swift */,
+			);
+			path = Sports;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +155,7 @@
 				TargetAttributes = {
 					44A01A672BB45F020093E53C = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 					};
 					44A01A6F2BB45F020093E53C = {
 						CreatedOnToolsVersion = 15.3;
@@ -191,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A01A822BB464FC0093E53C /* Sport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +354,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -366,6 +380,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -374,6 +389,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -406,6 +422,7 @@
 		44A01A7E2BB45F020093E53C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NXZW7962A8;
@@ -421,6 +438,7 @@
 		44A01A7F2BB45F020093E53C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NXZW7962A8;
