@@ -33,23 +33,34 @@ final class CatalogueCoreTests: XCTestCase {
   func test_init_doesNotLoadDataFromURL() {
     let (sut, client) = makeSUT()
 
-    XCTAssertNil(client.sentRequest)
+    XCTAssertEqual(client.sentRequests, [])
   }
 
   func test_load_requestsDataFromURL() async {
-    let (sut, client) = makeSUT()
+    let request = URLRequest(url: URL(string: "https://test-url.com")!)
+    let (sut, client) = makeSUT(request: request)
 
     await sut.load()
 
-    XCTAssertNotNil(client.sentRequest)
+    XCTAssertEqual(client.sentRequests, [request])
+  }
+
+  func test_loadTwice_requestDataFromURL() async {
+    let request = URLRequest(url: URL(string: "https://test-url.com")!)
+    let (sut, client) = makeSUT(request: request)
+
+    let _ = await sut.load()
+    let _ = await sut.load()
+
+    XCTAssertEqual(client.sentRequests, [request, request])
   }
 
   private class HTTPClientSpy: HTTPClient {
 
-    private(set) var sentRequest: URLRequest?
+    private(set) var sentRequests = [URLRequest]()
 
     func perform(request: URLRequest) -> HTTPClientResult {
-      sentRequest = request
+      sentRequests.append(request)
       return .success((Data(), HTTPURLResponse()))
     }
   }
