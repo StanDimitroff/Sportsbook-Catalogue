@@ -11,7 +11,7 @@ import CatalogueCore
 public typealias HTTPClientResult = Result<(Data, HTTPURLResponse), Error>
 
 protocol HTTPClient {
-  func perform(request: URLRequest) -> HTTPClientResult
+  func perform(request: URLRequest) async -> HTTPClientResult
 }
 
 final class RemoteSportLoader {
@@ -23,8 +23,8 @@ final class RemoteSportLoader {
     self.client = client
   }
 
-  public func load() {
-    let result = client.perform(request: request)
+  public func load() async {
+    let result = await client.perform(request: request)
   }
 }
 
@@ -38,12 +38,12 @@ final class CatalogueCoreTests: XCTestCase {
     XCTAssertNil(client.sentRequest)
   }
 
-  func test_load_requestsDataFromURL() {
+  func test_load_requestsDataFromURL() async {
     let client = HTTPClientSpy()
     let request = URLRequest(url: URL(string: "https://a-url.com")!)
     let sut = RemoteSportLoader(request: request, client: client)
 
-    sut.load()
+    await sut.load()
 
     XCTAssertNotNil(client.sentRequest)
   }
