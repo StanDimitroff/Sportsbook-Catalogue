@@ -8,19 +8,23 @@
 import XCTest
 import CatalogueCore
 
+public typealias HTTPClientResult = Result<(Data, HTTPURLResponse), Error>
+
 protocol HTTPClient {
-  func get(from url: URL)
+  func perform(request: URLRequest) -> HTTPClientResult
 }
 
 final class RemoteSportLoader {
+  private let request: URLRequest
   private let client: HTTPClient
 
-  public init(client: HTTPClient) {
+  public init(request: URLRequest, client: HTTPClient) {
+    self.request = request
     self.client = client
   }
 
   public func load() {
-    client.get(from: URL(string: "https://catalogue.core")!)
+    let result = client.perform(request: request)
   }
 }
 
@@ -28,25 +32,29 @@ final class CatalogueCoreTests: XCTestCase {
 
   func test_init_doesNotLoadDataFromURL() {
     let client = HTTPClientSpy()
-    let sut = RemoteSportLoader(client: client)
+    let request = URLRequest(url: URL(string: "https://a-url.com")!)
+    let sut = RemoteSportLoader(request: request, client: client)
 
-    XCTAssertEqual(client.requestedURL, nil)
+    XCTAssertNil(client.sentRequest)
   }
 
   func test_load_requestsDataFromURL() {
     let client = HTTPClientSpy()
-    let sut = RemoteSportLoader(client: client)
+    let request = URLRequest(url: URL(string: "https://a-url.com")!)
+    let sut = RemoteSportLoader(request: request, client: client)
 
     sut.load()
 
-    XCTAssertNotNil(client.requestedURL)
+    XCTAssertNotNil(client.sentRequest)
   }
 
   private class HTTPClientSpy: HTTPClient {
-    private(set) var requestedURL: URL?
 
-    func get(from url: URL) {
-      requestedURL = url
+    private(set) var sentRequest: URLRequest?
+
+    func perform(request: URLRequest) -> HTTPClientResult {
+      sentRequest = request
+      return .success((Data(), HTTPURLResponse()))
     }
   }
 }
