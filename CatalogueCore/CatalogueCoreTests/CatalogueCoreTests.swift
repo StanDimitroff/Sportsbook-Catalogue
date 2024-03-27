@@ -33,6 +33,15 @@ final class CatalogueCoreTests: XCTestCase {
     XCTAssertEqual(client.requestedURL, nil)
   }
 
+  func test_load_requestsDataFromURL() {
+    let client = HTTPClientSpy()
+    let sut = RemoteSportLoader(client: client)
+
+    sut.load()
+
+    XCTAssertNotNil(client.requestedURL)
+  }
+
   private class HTTPClientSpy: HTTPClient {
     private(set) var requestedURL: URL?
 
