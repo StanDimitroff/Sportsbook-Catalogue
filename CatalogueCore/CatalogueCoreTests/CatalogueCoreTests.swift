@@ -31,17 +31,13 @@ final class RemoteSportLoader {
 final class CatalogueCoreTests: XCTestCase {
 
   func test_init_doesNotLoadDataFromURL() {
-    let client = HTTPClientSpy()
-    let request = URLRequest(url: URL(string: "https://a-url.com")!)
-    let sut = RemoteSportLoader(request: request, client: client)
+    let (sut, client) = makeSUT()
 
     XCTAssertNil(client.sentRequest)
   }
 
   func test_load_requestsDataFromURL() async {
-    let client = HTTPClientSpy()
-    let request = URLRequest(url: URL(string: "https://a-url.com")!)
-    let sut = RemoteSportLoader(request: request, client: client)
+    let (sut, client) = makeSUT()
 
     await sut.load()
 
@@ -56,5 +52,18 @@ final class CatalogueCoreTests: XCTestCase {
       sentRequest = request
       return .success((Data(), HTTPURLResponse()))
     }
+  }
+
+  // MARK: - Helpers
+
+  private func makeSUT(
+    request: URLRequest = .init(url: URL(string: "https://a-url.com")!),
+    file: StaticString = #filePath,
+    line: UInt = #line
+  ) -> (sut: RemoteSportLoader, client: HTTPClientSpy) {
+    let client = HTTPClientSpy()
+    let sut = RemoteSportLoader(request: request, client: client)
+
+    return (sut: sut, client: client)
   }
 }
