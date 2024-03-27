@@ -8,6 +8,36 @@
 import XCTest
 import CatalogueCore
 
+protocol HTTPClient {
+  func get(from url: URL)
+}
+
+final class RemoteSportLoader {
+  private let client: HTTPClient
+
+  public init(client: HTTPClient) {
+    self.client = client
+  }
+
+  public func load() {
+    client.get(from: URL(string: "https://catalogue.core")!)
+  }
+}
+
 final class CatalogueCoreTests: XCTestCase {
 
+  func test_init_doesNotLoadDataFromURL() {
+    let client = HTTPClientSpy()
+    let sut = RemoteSportLoader(client: client)
+
+    XCTAssertEqual(client.requestedURL, nil)
+  }
+
+  private class HTTPClientSpy: HTTPClient {
+    private(set) var requestedURL: URL?
+
+    func get(from url: URL) {
+      requestedURL = url
+    }
+  }
 }
