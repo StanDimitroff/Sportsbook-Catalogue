@@ -1,6 +1,6 @@
 //
-//  CatalogueCoreTests.swift
-//  CatalogueCoreTests
+//  LoadSportsUseCaseTests.swift
+//  LoadSportsUseCaseTests
 //
 //  Created by Stanislav Dimitrov on 27.03.24.
 //
@@ -61,7 +61,7 @@ final class RemoteSportLoader {
   }
 }
 
-final class CatalogueCoreTests: XCTestCase {
+final class LoadSportsUseCaseTests: XCTestCase {
 
   func test_init_doesNotLoadDataFromURL() {
     let (_, client) = makeSUT()
@@ -187,7 +187,7 @@ final class CatalogueCoreTests: XCTestCase {
     }
 
     private(set) var sentRequests = [URLRequest]()
-    private var stub: Stub?
+    private(set) var stub: Stub?
 
     private let queue = DispatchQueue(label: "HTTPClientSpyQueue")
 
