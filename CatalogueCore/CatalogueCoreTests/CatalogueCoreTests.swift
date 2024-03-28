@@ -88,7 +88,6 @@ final class CatalogueCoreTests: XCTestCase {
     XCTAssertEqual(client.sentRequests, [request, request])
   }
 
-
   // MARK: - Sad path
 
   func test_load_deliversErrorOnHTTPClientError() async {
@@ -190,12 +189,16 @@ final class CatalogueCoreTests: XCTestCase {
     private(set) var sentRequests = [URLRequest]()
     private var stub: Stub?
 
+    private let queue = DispatchQueue(label: "HTTPClientSpyQueue")
+
     func stub(result: (statusCode: Int, data: Data)?, error: Error?) {
       stub = Stub(result: result, error: error)
     }
 
     func perform(request: URLRequest) async -> HTTPClientResult {
-      sentRequests.append(request)
+      queue.sync {
+        sentRequests.append(request)
+      }
 
       if let error = stub?.error {
         return .failure(error)
