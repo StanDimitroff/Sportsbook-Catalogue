@@ -16,6 +16,15 @@ protocol HTTPClient {
   func perform(request: URLRequest) async -> HTTPClientResult
 }
 
+struct RemoteSport: Decodable {
+  let id: Int
+  let name: String
+}
+
+struct RootResponse: Decodable {
+  let data: [RemoteSport]
+}
+
 final class RemoteSportLoader {
   private let request: URLRequest
   private let client: HTTPClient
@@ -34,12 +43,17 @@ final class RemoteSportLoader {
     let result = await client.perform(request: request)
 
     switch result {
-    case let .success((_, response)):
-      if response.statusCode == 200 {
-        return .success([])
+    case let .success((data, response)):
+      guard response.statusCode == 200 else {
+        return .failure(Error.invalidData)
       }
 
-      return .failure(Error.invalidData)
+      let decoder = JSONDecoder()
+      guard let sports = try? decoder.decode([RootResponse].self, from: data) else {
+        return .failure(Error.invalidData)
+      }
+
+      return .success([])
 
     case .failure:
       return .failure(Error.noConnection)
@@ -112,6 +126,24 @@ final class CatalogueCoreTests: XCTestCase {
           XCTFail("Expected failure, got \(result) instead")
         }
       }
+    }
+  }
+
+  func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() async {
+    let (sut, client) = makeSUT()
+
+    let invalidJSONData = Data("invalid json".utf8)
+
+    client.stub(result: (statusCode: 200, data: invalidJSONData), error: nil)
+
+    let result = await sut.load()
+
+    switch result {
+    case let .failure(receivedError):
+      XCTAssertEqual(receivedError as! RemoteSportLoader.Error, RemoteSportLoader.Error.invalidData)
+
+    default:
+      XCTFail("Expected failure, got \(result) instead")
     }
   }
 
