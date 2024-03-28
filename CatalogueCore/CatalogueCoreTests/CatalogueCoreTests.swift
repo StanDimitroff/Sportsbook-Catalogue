@@ -49,7 +49,7 @@ final class RemoteSportLoader {
       }
 
       let decoder = JSONDecoder()
-      guard let sports = try? decoder.decode([RootResponse].self, from: data) else {
+      guard let _ = try? decoder.decode(RootResponse.self, from: data) else {
         return .failure(Error.invalidData)
       }
 
@@ -147,6 +147,26 @@ final class CatalogueCoreTests: XCTestCase {
     }
   }
 
+  // MARK: - Happy path
+
+  func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() async {
+    let (sut, client) = makeSUT()
+
+    let emptyListJSONData = Data("{\"data\": []}".utf8)
+
+    client.stub(result: (statusCode: 200, data: emptyListJSONData), error: nil)
+
+    let result = await sut.load()
+
+    switch result {
+    case let .success(receivedItems):
+      XCTAssertEqual(receivedItems, [])
+
+    default:
+      XCTFail("Expected success, got \(result) instead")
+    }
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(
@@ -174,7 +194,7 @@ final class CatalogueCoreTests: XCTestCase {
       stub = Stub(result: result, error: error)
     }
 
-    func perform(request: URLRequest) -> HTTPClientResult {
+    func perform(request: URLRequest) async -> HTTPClientResult {
       sentRequests.append(request)
 
       if let error = stub?.error {
@@ -190,7 +210,7 @@ final class CatalogueCoreTests: XCTestCase {
         )!
         return .success((result.data, response))
       }
-      
+
       return .failure(NSError(domain: "Empty error", code: 0))
     }
   }
