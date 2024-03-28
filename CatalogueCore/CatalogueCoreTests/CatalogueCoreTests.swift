@@ -31,9 +31,19 @@ final class RemoteSportLoader {
   }
 
   public func load() async -> LoadSportsResult {
-    _ = await client.perform(request: request)
+    let result = await client.perform(request: request)
 
-    return .failure(Error.noConnection)
+    switch result {
+    case let .success((_, response)):
+      if response.statusCode == 200 {
+        return .success([])
+      }
+
+      return .failure(Error.invalidData)
+
+    case .failure:
+      return .failure(Error.noConnection)
+    }
   }
 }
 
@@ -83,6 +93,28 @@ final class CatalogueCoreTests: XCTestCase {
     }
   }
 
+  func test_load_deliversErrorOnNon200HTTPResponse() async {
+    let (sut, client) = makeSUT()
+
+    let samples = [199, 201, 300, 400, 500]
+
+    samples.enumerated().forEach { index, code in
+      client.stub(result: (statusCode: code, data: Data()), error: nil)
+
+      Task { [sut] in
+        let result = await sut.load()
+
+        switch result {
+        case let .failure(receivedError):
+          XCTAssertEqual(receivedError as! RemoteSportLoader.Error, RemoteSportLoader.Error.invalidData)
+
+        default:
+          XCTFail("Expected failure, got \(result) instead")
+        }
+      }
+    }
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(
@@ -116,7 +148,18 @@ final class CatalogueCoreTests: XCTestCase {
       if let error = stub?.error {
         return .failure(error)
       }
-      return .success((Data(), HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!))
+
+      if let result = stub?.result {
+        let response = HTTPURLResponse(
+          url: request.url!,
+          statusCode: result.statusCode,
+          httpVersion: nil,
+          headerFields: nil
+        )!
+        return .success((result.data, response))
+      }
+      
+      return .failure(NSError(domain: "Empty error", code: 0))
     }
   }
 }
