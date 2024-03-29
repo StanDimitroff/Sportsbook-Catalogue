@@ -21,10 +21,6 @@ struct RemoteSport: Decodable {
   let name: String
 }
 
-struct RootResponse: Decodable {
-  let data: [RemoteSport]
-}
-
 final class RemoteSportLoader {
   private let request: URLRequest
   private let client: HTTPClient
@@ -44,19 +40,33 @@ final class RemoteSportLoader {
 
     switch result {
     case let .success((data, response)):
-      guard response.statusCode == 200 else {
-        return .failure(Error.invalidData)
+      do {
+        let sports = try SportsMapper.map(data, from: response)
+        return .success(sports.toModels())
+      } catch {
+        return .failure(error)
       }
-
-      let decoder = JSONDecoder()
-      guard let root = try? decoder.decode(RootResponse.self, from: data) else {
-        return .failure(Error.invalidData)
-      }
-      return .success(root.data.toModels())
-
     case .failure:
       return .failure(Error.noConnection)
     }
+  }
+}
+
+final class SportsMapper {
+  private init() {}
+
+  private struct RootSportResponse: Decodable {
+    let data: [RemoteSport]
+  }
+
+  private static var OK_200: Int { 200 }
+
+  static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteSport] {
+    guard response.statusCode == OK_200,
+          let root = try? JSONDecoder().decode(RootSportResponse.self, from: data) else {
+      throw RemoteSportLoader.Error.invalidData
+    }
+    return root.data
   }
 }
 
