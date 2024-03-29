@@ -8,28 +8,6 @@
 import XCTest
 import CatalogueCore
 
-final class URLSessionClient: HTTPClient {
-  private let session: URLSession
-
-  init(session: URLSession) {
-    self.session = session
-  }
-
-  private struct UnexpectedDataRepresentation: Error { }
-
-  func perform(request: URLRequest) async -> HTTPClientResult {
-    do {
-      let data = try await session.data(for: request)
-      if let response = data.1 as? HTTPURLResponse {
-        return .success((data.0, response))
-      }
-      return .failure(UnexpectedDataRepresentation())
-    } catch {
-      return .failure(error)
-    }
-  }
-}
-
 final class LoadSportsEndToEndTests: XCTestCase {
 
   func test_endToEndTestServerGETSportsResult_matchesFixedTestData() async {

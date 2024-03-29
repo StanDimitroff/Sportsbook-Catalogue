@@ -16,6 +16,7 @@
 		44A01A8B2BB6A93F0093E53C /* SportsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A8A2BB6A93F0093E53C /* SportsMapper.swift */; };
 		44A01A8D2BB6A9660093E53C /* RemoteSport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A8C2BB6A9660093E53C /* RemoteSport.swift */; };
 		44A01A8F2BB6ABF40093E53C /* LoadSportsEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A8E2BB6ABF40093E53C /* LoadSportsEndToEndTests.swift */; };
+		44A01A912BB6B28A0093E53C /* URLSessionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A902BB6B28A0093E53C /* URLSessionClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		44A01A8A2BB6A93F0093E53C /* SportsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsMapper.swift; sourceTree = "<group>"; };
 		44A01A8C2BB6A9660093E53C /* RemoteSport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSport.swift; sourceTree = "<group>"; };
 		44A01A8E2BB6ABF40093E53C /* LoadSportsEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSportsEndToEndTests.swift; sourceTree = "<group>"; };
+		44A01A902BB6B28A0093E53C /* URLSessionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				44A01A882BB6A8E10093E53C /* HTTPClient.swift */,
 				44A01A8A2BB6A93F0093E53C /* SportsMapper.swift */,
 				44A01A8C2BB6A9660093E53C /* RemoteSport.swift */,
+				44A01A902BB6B28A0093E53C /* URLSessionClient.swift */,
 			);
 			path = SportsAPI;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44A01A822BB464FC0093E53C /* Sport.swift in Sources */,
+				44A01A912BB6B28A0093E53C /* URLSessionClient.swift in Sources */,
 				44A01A8B2BB6A93F0093E53C /* SportsMapper.swift in Sources */,
 				44A01A872BB6A8BE0093E53C /* RemoteSportsLoader.swift in Sources */,
 				44A01A892BB6A8E10093E53C /* HTTPClient.swift in Sources */,
