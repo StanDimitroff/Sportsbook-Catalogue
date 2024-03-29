@@ -49,11 +49,10 @@ final class RemoteSportLoader {
       }
 
       let decoder = JSONDecoder()
-      guard let _ = try? decoder.decode(RootResponse.self, from: data) else {
+      guard let root = try? decoder.decode(RootResponse.self, from: data) else {
         return .failure(Error.invalidData)
       }
-
-      return .success([])
+      return .success(root.data.toModels())
 
     case .failure:
       return .failure(Error.noConnection)
@@ -148,7 +147,7 @@ final class LoadSportsUseCaseTests: XCTestCase {
 
   // MARK: - Happy path
 
-  func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() async {
+  func test_load_deliversNoSportsOn200HTTPResponseWithEmptyJSONList() async {
     let (sut, client) = makeSUT()
 
     let emptyListJSONData = Data("{\"data\": []}".utf8)
@@ -160,6 +159,27 @@ final class LoadSportsUseCaseTests: XCTestCase {
     switch result {
     case let .success(receivedItems):
       XCTAssertEqual(receivedItems, [])
+
+    default:
+      XCTFail("Expected success, got \(result) instead")
+    }
+  }
+
+  func test_load_deliversSportsOn200HTTPResponseWithJSONItems() async {
+    let (sut, client) = makeSUT()
+
+    let item1 = Sport(id: 1, name: "a name")
+    let item2 = Sport(id: 2, name: "another name")
+
+    let itemsJSONData = Data("{\"data\": [{\"id\": 1, \"name\": \"a name\"}, {\"id\": 2, \"name\": \"another name\"}]}".utf8)
+
+    client.stub(result: (statusCode: 200, data: itemsJSONData), error: nil)
+
+    let result = await sut.load()
+
+    switch result {
+    case let .success(receivedItems):
+      XCTAssertEqual(receivedItems, [item1, item2])
 
     default:
       XCTFail("Expected success, got \(result) instead")
@@ -216,5 +236,11 @@ final class LoadSportsUseCaseTests: XCTestCase {
 
       return .failure(NSError(domain: "Empty error", code: 0))
     }
+  }
+}
+
+extension Array where Element == RemoteSport {
+  func toModels() -> [Sport] {
+    map { Sport(id: $0.id, name: $0.name) }
   }
 }
