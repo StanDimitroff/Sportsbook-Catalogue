@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "422A7A1B-AEB9-41FF-B090-75649492B0F5",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CatalogueCore.xcodeproj",
+        "identifier" : "44A01A6F2BB45F020093E53C",
+        "name" : "CatalogueCoreTests"
+      }
+    }
+  ],
+  "version" : 1
+}

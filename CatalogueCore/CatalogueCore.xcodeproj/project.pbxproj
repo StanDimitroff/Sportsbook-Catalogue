@@ -41,6 +41,7 @@
 		44A01A8C2BB6A9660093E53C /* RemoteSport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSport.swift; sourceTree = "<group>"; };
 		44A01A8E2BB6ABF40093E53C /* LoadSportsEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSportsEndToEndTests.swift; sourceTree = "<group>"; };
 		44A01A902BB6B28A0093E53C /* URLSessionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionClient.swift; sourceTree = "<group>"; };
+		44A01AC82BB6BD230093E53C /* CatalogueCore.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatalogueCore.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +66,7 @@
 		44A01A5E2BB45F020093E53C = {
 			isa = PBXGroup;
 			children = (
+				44A01AC82BB6BD230093E53C /* CatalogueCore.xctestplan */,
 				44A01A6A2BB45F020093E53C /* CatalogueCore */,
 				44A01A742BB45F020093E53C /* CatalogueCoreTests */,
 				44A01A692BB45F020093E53C /* Products */,
