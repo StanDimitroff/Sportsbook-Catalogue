@@ -7,10 +7,18 @@
 
 import XCTest
 
-final class SportsViewController {
+final class SportsViewController: UIViewController {
 
-  init(loader: SportsLoaderSpy) {
+  private var loader: SportsLoaderSpy?
 
+  convenience init(loader: SportsLoaderSpy) {
+    self.init()
+    self.loader = loader
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    loader?.load()
   }
 }
 
@@ -22,8 +30,21 @@ final class CatalogueiOSTests: XCTestCase {
 
     XCTAssertEqual(loader.loadCallCount, 0)
   }
+
+  func test_viewDidLoad_loadsSports() {
+    let loader = SportsLoaderSpy()
+    let sut = SportsViewController(loader: loader)
+
+    sut.loadViewIfNeeded()
+
+    XCTAssertEqual(loader.loadCallCount, 1)
+  }
 }
 
 class SportsLoaderSpy {
   var loadCallCount: Int = 0
+
+  func load() {
+    loadCallCount += 1
+  }
 }
