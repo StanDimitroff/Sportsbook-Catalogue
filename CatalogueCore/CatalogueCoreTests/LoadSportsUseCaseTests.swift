@@ -8,68 +8,6 @@
 import XCTest
 import CatalogueCore
 
-public typealias HTTPClientResult = Result<(Data, HTTPURLResponse), Error>
-
-public typealias LoadSportsResult = Result<[Sport], Error>
-
-protocol HTTPClient {
-  func perform(request: URLRequest) async -> HTTPClientResult
-}
-
-struct RemoteSport: Decodable {
-  let id: Int
-  let name: String
-}
-
-final class RemoteSportLoader {
-  private let request: URLRequest
-  private let client: HTTPClient
-
-  public enum Error: Swift.Error {
-    case noConnection
-    case invalidData
-  }
-
-  public init(request: URLRequest, client: HTTPClient) {
-    self.request = request
-    self.client = client
-  }
-
-  public func load() async -> LoadSportsResult {
-    let result = await client.perform(request: request)
-
-    switch result {
-    case let .success((data, response)):
-      do {
-        let sports = try SportsMapper.map(data, from: response)
-        return .success(sports.toModels())
-      } catch {
-        return .failure(error)
-      }
-    case .failure:
-      return .failure(Error.noConnection)
-    }
-  }
-}
-
-final class SportsMapper {
-  private init() {}
-
-  private struct RootSportResponse: Decodable {
-    let data: [RemoteSport]
-  }
-
-  private static var OK_200: Int { 200 }
-
-  static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteSport] {
-    guard response.statusCode == OK_200,
-          let root = try? JSONDecoder().decode(RootSportResponse.self, from: data) else {
-      throw RemoteSportLoader.Error.invalidData
-    }
-    return root.data
-  }
-}
-
 final class LoadSportsUseCaseTests: XCTestCase {
 
   func test_init_doesNotLoadDataFromURL() {
@@ -108,7 +46,7 @@ final class LoadSportsUseCaseTests: XCTestCase {
 
     switch result {
     case let .failure(receivedError):
-      XCTAssertEqual(receivedError as! RemoteSportLoader.Error, RemoteSportLoader.Error.noConnection)
+      XCTAssertEqual(receivedError as! RemoteSportsLoader.Error, RemoteSportsLoader.Error.noConnection)
 
     default:
       XCTFail("Expected failure, got \(result) instead")
@@ -128,7 +66,7 @@ final class LoadSportsUseCaseTests: XCTestCase {
 
         switch result {
         case let .failure(receivedError):
-          XCTAssertEqual(receivedError as! RemoteSportLoader.Error, RemoteSportLoader.Error.invalidData)
+          XCTAssertEqual(receivedError as! RemoteSportsLoader.Error, RemoteSportsLoader.Error.invalidData)
 
         default:
           XCTFail("Expected failure, got \(result) instead")
@@ -148,7 +86,7 @@ final class LoadSportsUseCaseTests: XCTestCase {
 
     switch result {
     case let .failure(receivedError):
-      XCTAssertEqual(receivedError as! RemoteSportLoader.Error, RemoteSportLoader.Error.invalidData)
+      XCTAssertEqual(receivedError as! RemoteSportsLoader.Error, RemoteSportsLoader.Error.invalidData)
 
     default:
       XCTFail("Expected failure, got \(result) instead")
@@ -202,9 +140,9 @@ final class LoadSportsUseCaseTests: XCTestCase {
     request: URLRequest = .init(url: URL(string: "https://a-url.com")!),
     file: StaticString = #filePath,
     line: UInt = #line
-  ) -> (sut: RemoteSportLoader, client: HTTPClientSpy) {
+  ) -> (sut: RemoteSportsLoader, client: HTTPClientSpy) {
     let client = HTTPClientSpy()
-    let sut = RemoteSportLoader(request: request, client: client)
+    let sut = RemoteSportsLoader(request: request, client: client)
 
     return (sut: sut, client: client)
   }
@@ -246,11 +184,5 @@ final class LoadSportsUseCaseTests: XCTestCase {
 
       return .failure(NSError(domain: "Empty error", code: 0))
     }
-  }
-}
-
-extension Array where Element == RemoteSport {
-  func toModels() -> [Sport] {
-    map { Sport(id: $0.id, name: $0.name) }
   }
 }
