@@ -8,8 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		44A01A712BB45F020093E53C /* CatalogueCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A01A682BB45F020093E53C /* CatalogueCore.framework */; };
-		44A01A762BB45F020093E53C /* CatalogueCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A752BB45F020093E53C /* CatalogueCoreTests.swift */; };
+		44A01A762BB45F020093E53C /* LoadSportsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A752BB45F020093E53C /* LoadSportsUseCaseTests.swift */; };
 		44A01A772BB45F020093E53C /* CatalogueCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 44A01A6B2BB45F020093E53C /* CatalogueCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		44A01A822BB464FC0093E53C /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A812BB464FC0093E53C /* Sport.swift */; };
+		44A01A872BB6A8BE0093E53C /* RemoteSportsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A862BB6A8BE0093E53C /* RemoteSportsLoader.swift */; };
+		44A01A892BB6A8E10093E53C /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A882BB6A8E10093E53C /* HTTPClient.swift */; };
+		44A01A8B2BB6A93F0093E53C /* SportsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A8A2BB6A93F0093E53C /* SportsMapper.swift */; };
+		44A01A8D2BB6A9660093E53C /* RemoteSport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A8C2BB6A9660093E53C /* RemoteSport.swift */; };
+		44A01A8F2BB6ABF40093E53C /* LoadSportsEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A8E2BB6ABF40093E53C /* LoadSportsEndToEndTests.swift */; };
+		44A01A912BB6B28A0093E53C /* URLSessionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A902BB6B28A0093E53C /* URLSessionClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,7 +33,14 @@
 		44A01A682BB45F020093E53C /* CatalogueCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CatalogueCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A01A6B2BB45F020093E53C /* CatalogueCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatalogueCore.h; sourceTree = "<group>"; };
 		44A01A702BB45F020093E53C /* CatalogueCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatalogueCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		44A01A752BB45F020093E53C /* CatalogueCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueCoreTests.swift; sourceTree = "<group>"; };
+		44A01A752BB45F020093E53C /* LoadSportsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSportsUseCaseTests.swift; sourceTree = "<group>"; };
+		44A01A812BB464FC0093E53C /* Sport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
+		44A01A862BB6A8BE0093E53C /* RemoteSportsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSportsLoader.swift; sourceTree = "<group>"; };
+		44A01A882BB6A8E10093E53C /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		44A01A8A2BB6A93F0093E53C /* SportsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsMapper.swift; sourceTree = "<group>"; };
+		44A01A8C2BB6A9660093E53C /* RemoteSport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSport.swift; sourceTree = "<group>"; };
+		44A01A8E2BB6ABF40093E53C /* LoadSportsEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSportsEndToEndTests.swift; sourceTree = "<group>"; };
+		44A01A902BB6B28A0093E53C /* URLSessionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +83,8 @@
 		44A01A6A2BB45F020093E53C /* CatalogueCore */ = {
 			isa = PBXGroup;
 			children = (
+				44A01A852BB6A8950093E53C /* SportsAPI */,
+				44A01A802BB464B90093E53C /* Sports */,
 				44A01A6B2BB45F020093E53C /* CatalogueCore.h */,
 			);
 			path = CatalogueCore;
@@ -77,9 +93,30 @@
 		44A01A742BB45F020093E53C /* CatalogueCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				44A01A752BB45F020093E53C /* CatalogueCoreTests.swift */,
+				44A01A752BB45F020093E53C /* LoadSportsUseCaseTests.swift */,
+				44A01A8E2BB6ABF40093E53C /* LoadSportsEndToEndTests.swift */,
 			);
 			path = CatalogueCoreTests;
+			sourceTree = "<group>";
+		};
+		44A01A802BB464B90093E53C /* Sports */ = {
+			isa = PBXGroup;
+			children = (
+				44A01A812BB464FC0093E53C /* Sport.swift */,
+			);
+			path = Sports;
+			sourceTree = "<group>";
+		};
+		44A01A852BB6A8950093E53C /* SportsAPI */ = {
+			isa = PBXGroup;
+			children = (
+				44A01A862BB6A8BE0093E53C /* RemoteSportsLoader.swift */,
+				44A01A882BB6A8E10093E53C /* HTTPClient.swift */,
+				44A01A8A2BB6A93F0093E53C /* SportsMapper.swift */,
+				44A01A8C2BB6A9660093E53C /* RemoteSport.swift */,
+				44A01A902BB6B28A0093E53C /* URLSessionClient.swift */,
+			);
+			path = SportsAPI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +181,7 @@
 				TargetAttributes = {
 					44A01A672BB45F020093E53C = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 					};
 					44A01A6F2BB45F020093E53C = {
 						CreatedOnToolsVersion = 15.3;
@@ -191,6 +229,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A01A822BB464FC0093E53C /* Sport.swift in Sources */,
+				44A01A912BB6B28A0093E53C /* URLSessionClient.swift in Sources */,
+				44A01A8B2BB6A93F0093E53C /* SportsMapper.swift in Sources */,
+				44A01A872BB6A8BE0093E53C /* RemoteSportsLoader.swift in Sources */,
+				44A01A892BB6A8E10093E53C /* HTTPClient.swift in Sources */,
+				44A01A8D2BB6A9660093E53C /* RemoteSport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +242,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44A01A762BB45F020093E53C /* CatalogueCoreTests.swift in Sources */,
+				44A01A762BB45F020093E53C /* LoadSportsUseCaseTests.swift in Sources */,
+				44A01A8F2BB6ABF40093E53C /* LoadSportsEndToEndTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -366,6 +412,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -374,6 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -406,6 +454,7 @@
 		44A01A7E2BB45F020093E53C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NXZW7962A8;
@@ -421,6 +470,7 @@
 		44A01A7F2BB45F020093E53C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NXZW7962A8;
