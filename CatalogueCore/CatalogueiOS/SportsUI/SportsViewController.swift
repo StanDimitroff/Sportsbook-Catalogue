@@ -8,7 +8,7 @@
 import UIKit
 import CatalogueCore
 
-public final class SportsViewController: UIViewController {
+public final class SportsViewController: UITableViewController {
 
   private var loader: SportsLoader?
 

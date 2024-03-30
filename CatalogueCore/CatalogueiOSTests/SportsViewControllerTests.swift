@@ -33,6 +33,23 @@ final class SportsViewControllerTests: XCTestCase {
     wait(for: [exp], timeout: 1.0)
   }
 
+  func test_loadSports_rendersNoSportsOnLoaderError() {
+    let (sut, loader) = makeSUT()
+    let exp = expectation(description: "Wait for load completion")
+
+    sut.loadViewIfNeeded()
+
+    loader.completeWithError {
+      exp.fulfill()
+
+      let renderedCells = sut.tableView.numberOfRows(inSection: 0)
+
+      XCTAssertEqual(renderedCells, 0)
+    }
+
+    wait(for: [exp], timeout: 1.0)
+  }
+
   private func makeSUT() -> (SportsViewController, SportsLoaderSpy) {
     let loader = SportsLoaderSpy()
     let sut = SportsViewController(loader: loader)
@@ -64,7 +81,18 @@ final class SportsViewControllerTests: XCTestCase {
     func complete(with items: [Sport] = [], completion: @escaping () -> Void) {
       responseContinuation.yield(.success(items))
       responseContinuation.onTermination = { _ in
-        completion()
+        DispatchQueue.main.async {
+          completion()
+        }
+      }
+    }
+
+    func completeWithError(completion: @escaping () -> Void) {
+      responseContinuation.yield(.failure(NSError(domain: "SportsLoader", code: 0)))
+      responseContinuation.onTermination = { _ in
+        DispatchQueue.main.async {
+          completion()
+        }
       }
     }
   }
