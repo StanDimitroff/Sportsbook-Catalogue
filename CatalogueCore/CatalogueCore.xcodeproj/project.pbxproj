@@ -22,6 +22,8 @@
 		44A01ADC2BB6BDFF0093E53C /* CatalogueiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 44A01AD02BB6BDFE0093E53C /* CatalogueiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44A01AE42BB6BEE90093E53C /* Catalogue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A01AE32BB6BEE90093E53C /* Catalogue.storyboard */; };
 		44A01AE82BB8166C0093E53C /* SportsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01AE72BB8166C0093E53C /* SportsLoader.swift */; };
+		44A01AEA2BB817400093E53C /* CatalogueCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A01A682BB45F020093E53C /* CatalogueCore.framework */; };
+		44A01AEB2BB817400093E53C /* CatalogueCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44A01A682BB45F020093E53C /* CatalogueCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +41,28 @@
 			remoteGlobalIDString = 44A01ACD2BB6BDFE0093E53C;
 			remoteInfo = CatalogueiOS;
 		};
+		44A01AEC2BB817400093E53C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44A01A5F2BB45F020093E53C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44A01A672BB45F020093E53C;
+			remoteInfo = CatalogueCore;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		44A01AEE2BB817400093E53C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				44A01AEB2BB817400093E53C /* CatalogueCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		44A01A682BB45F020093E53C /* CatalogueCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CatalogueCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A01AEA2BB817400093E53C /* CatalogueCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +129,7 @@
 				44A01ACF2BB6BDFE0093E53C /* CatalogueiOS */,
 				44A01AD92BB6BDFF0093E53C /* CatalogueiOSTests */,
 				44A01A692BB45F020093E53C /* Products */,
+				44A01AE92BB817400093E53C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,6 +201,13 @@
 			path = CatalogueiOSTests;
 			sourceTree = "<group>";
 		};
+		44A01AE92BB817400093E53C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -242,10 +274,12 @@
 				44A01ACA2BB6BDFE0093E53C /* Sources */,
 				44A01ACB2BB6BDFE0093E53C /* Frameworks */,
 				44A01ACC2BB6BDFE0093E53C /* Resources */,
+				44A01AEE2BB817400093E53C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				44A01AED2BB817400093E53C /* PBXTargetDependency */,
 			);
 			name = CatalogueiOS;
 			productName = CatalogueiOS;
@@ -400,6 +434,11 @@
 			isa = PBXTargetDependency;
 			target = 44A01ACD2BB6BDFE0093E53C /* CatalogueiOS */;
 			targetProxy = 44A01AD72BB6BDFF0093E53C /* PBXContainerItemProxy */;
+		};
+		44A01AED2BB817400093E53C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44A01A672BB45F020093E53C /* CatalogueCore */;
+			targetProxy = 44A01AEC2BB817400093E53C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -556,6 +595,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getset.CatalogueCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos macosx iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -591,6 +631,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.getset.CatalogueCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_VERSION = 5.0;
