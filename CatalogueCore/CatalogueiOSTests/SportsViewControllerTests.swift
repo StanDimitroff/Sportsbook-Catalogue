@@ -7,24 +7,7 @@
 
 import XCTest
 import CatalogueCore
-
-final class SportsViewController: UIViewController {
-
-  private var loader: SportsLoader?
-
-  convenience init(loader: SportsLoader) {
-    self.init()
-    self.loader = loader
-  }
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    Task {
-      let _ = await loader?.load()
-    }
-  }
-}
+import CatalogueiOS
 
 final class SportsViewControllerTests: XCTestCase {
 

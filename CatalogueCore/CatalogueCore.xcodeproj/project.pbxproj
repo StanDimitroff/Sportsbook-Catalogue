@@ -24,6 +24,7 @@
 		44A01AE82BB8166C0093E53C /* SportsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01AE72BB8166C0093E53C /* SportsLoader.swift */; };
 		44A01AEA2BB817400093E53C /* CatalogueCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A01A682BB45F020093E53C /* CatalogueCore.framework */; };
 		44A01AEB2BB817400093E53C /* CatalogueCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44A01A682BB45F020093E53C /* CatalogueCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44A01AF22BB81E990093E53C /* SportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01AF12BB81E990093E53C /* SportsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		44A01ADA2BB6BDFF0093E53C /* SportsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsViewControllerTests.swift; sourceTree = "<group>"; };
 		44A01AE32BB6BEE90093E53C /* Catalogue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Catalogue.storyboard; sourceTree = "<group>"; };
 		44A01AE72BB8166C0093E53C /* SportsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsLoader.swift; sourceTree = "<group>"; };
+		44A01AF12BB81E990093E53C /* SportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 		44A01ACF2BB6BDFE0093E53C /* CatalogueiOS */ = {
 			isa = PBXGroup;
 			children = (
+				44A01AF02BB81E870093E53C /* SportsUI */,
 				44A01AD02BB6BDFE0093E53C /* CatalogueiOS.h */,
 				44A01AE32BB6BEE90093E53C /* Catalogue.storyboard */,
 			);
@@ -206,6 +209,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		44A01AF02BB81E870093E53C /* SportsUI */ = {
+			isa = PBXGroup;
+			children = (
+				44A01AF12BB81E990093E53C /* SportsViewController.swift */,
+			);
+			path = SportsUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,6 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A01AF22BB81E990093E53C /* SportsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,6 +759,7 @@
 		44A01ADF2BB6BDFF0093E53C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NXZW7962A8;
@@ -765,6 +778,7 @@
 		44A01AE02BB6BDFF0093E53C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NXZW7962A8;
