@@ -50,6 +50,23 @@ final class SportsViewControllerTests: XCTestCase {
     wait(for: [exp], timeout: 1.0)
   }
 
+  func test_loadSports_rendersNoSportsOnEmptySportsList() {
+    let (sut, loader) = makeSUT()
+    let exp = expectation(description: "Wait for load completion")
+
+    sut.loadViewIfNeeded()
+
+    loader.complete {
+      exp.fulfill()
+
+      let renderedCells = sut.tableView.numberOfRows(inSection: 0)
+
+      XCTAssertEqual(renderedCells, 0)
+    }
+
+    wait(for: [exp], timeout: 1.0)
+  }
+
   private func makeSUT() -> (SportsViewController, SportsLoaderSpy) {
     let loader = SportsLoaderSpy()
     let sut = SportsViewController(loader: loader)
