@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SportCell: UITableViewCell {
+public final class SportCell: UITableViewCell {
 
   public let nameLabel = UILabel()
 
