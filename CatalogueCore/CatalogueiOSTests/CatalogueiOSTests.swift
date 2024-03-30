@@ -6,19 +6,23 @@
 //
 
 import XCTest
+import CatalogueCore
 
 final class SportsViewController: UIViewController {
 
-  private var loader: SportsLoaderSpy?
+  private var loader: SportsLoader?
 
-  convenience init(loader: SportsLoaderSpy) {
+  convenience init(loader: SportsLoader) {
     self.init()
     self.loader = loader
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    loader?.load()
+
+    Task {
+      let _ = await loader?.load()
+    }
   }
 }
 
@@ -37,14 +41,43 @@ final class CatalogueiOSTests: XCTestCase {
 
     sut.loadViewIfNeeded()
 
-    XCTAssertEqual(loader.loadCallCount, 1)
+    let exp = expectation(description: "Wait for load completion")
+
+    loader.complete {
+      exp.fulfill()
+
+      XCTAssertEqual(loader.loadCallCount, 1)
+    }
+
+    wait(for: [exp], timeout: 1.0)
   }
 }
 
-class SportsLoaderSpy {
-  var loadCallCount: Int = 0
+private class SportsLoaderSpy: SportsLoader {
+  private(set) var loadCallCount: Int = 0
 
-  func load() {
+  private let responseContinuation: AsyncStream<Result<[Sport], Error>>.Continuation
+  private let responseStream: AsyncStream<Result<[Sport], Error>>
+
+  init() {
+    var responseContinuation: AsyncStream<Result<[Sport], Error>>.Continuation!
+    self.responseStream = AsyncStream { responseContinuation = $0 }
+    self.responseContinuation = responseContinuation
+  }
+
+  func load() async -> LoadSportsResult {
     loadCallCount += 1
+
+    let result = await responseStream.first(where: { _ in true })!
+    responseContinuation.finish()
+
+    return result
+  }
+
+  func complete(with items: [Sport] = [], completion: @escaping () -> Void) {
+    responseContinuation.yield(.success(items))
+    responseContinuation.onTermination = { _ in
+      completion()
+    }
   }
 }
