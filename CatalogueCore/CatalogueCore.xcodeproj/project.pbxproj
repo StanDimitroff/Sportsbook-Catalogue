@@ -25,6 +25,7 @@
 		44A01AEA2BB817400093E53C /* CatalogueCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A01A682BB45F020093E53C /* CatalogueCore.framework */; };
 		44A01AEB2BB817400093E53C /* CatalogueCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44A01A682BB45F020093E53C /* CatalogueCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		44A01AF22BB81E990093E53C /* SportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01AF12BB81E990093E53C /* SportsViewController.swift */; };
+		44A01AF42BB81F160093E53C /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01AF32BB81F160093E53C /* SportCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		44A01AE32BB6BEE90093E53C /* Catalogue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Catalogue.storyboard; sourceTree = "<group>"; };
 		44A01AE72BB8166C0093E53C /* SportsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsLoader.swift; sourceTree = "<group>"; };
 		44A01AF12BB81E990093E53C /* SportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsViewController.swift; sourceTree = "<group>"; };
+		44A01AF32BB81F160093E53C /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				44A01AF12BB81E990093E53C /* SportsViewController.swift */,
+				44A01AF32BB81F160093E53C /* SportCell.swift */,
 			);
 			path = SportsUI;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A01AF42BB81F160093E53C /* SportCell.swift in Sources */,
 				44A01AF22BB81E990093E53C /* SportsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

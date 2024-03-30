@@ -12,15 +12,13 @@ import CatalogueiOS
 final class SportsViewControllerTests: XCTestCase {
 
   func test_init_doesNotLoadSports() {
-    let loader = SportsLoaderSpy()
-    let _ = SportsViewController(loader: loader)
+    let (_, loader) = makeSUT()
 
     XCTAssertEqual(loader.loadCallCount, 0)
   }
 
   func test_viewDidLoad_loadsSports() {
-    let loader = SportsLoaderSpy()
-    let sut = SportsViewController(loader: loader)
+    let (sut, loader) = makeSUT()
 
     sut.loadViewIfNeeded()
 
@@ -34,33 +32,40 @@ final class SportsViewControllerTests: XCTestCase {
 
     wait(for: [exp], timeout: 1.0)
   }
-}
 
-private class SportsLoaderSpy: SportsLoader {
-  private(set) var loadCallCount: Int = 0
+  private func makeSUT() -> (SportsViewController, SportsLoaderSpy) {
+    let loader = SportsLoaderSpy()
+    let sut = SportsViewController(loader: loader)
 
-  private let responseContinuation: AsyncStream<Result<[Sport], Error>>.Continuation
-  private let responseStream: AsyncStream<Result<[Sport], Error>>
-
-  init() {
-    var responseContinuation: AsyncStream<Result<[Sport], Error>>.Continuation!
-    self.responseStream = AsyncStream { responseContinuation = $0 }
-    self.responseContinuation = responseContinuation
+    return (sut, loader)
   }
 
-  func load() async -> LoadSportsResult {
-    loadCallCount += 1
+  private class SportsLoaderSpy: SportsLoader {
+    private(set) var loadCallCount: Int = 0
 
-    let result = await responseStream.first(where: { _ in true })!
-    responseContinuation.finish()
+    private let responseContinuation: AsyncStream<Result<[Sport], Error>>.Continuation
+    private let responseStream: AsyncStream<Result<[Sport], Error>>
 
-    return result
-  }
+    init() {
+      var responseContinuation: AsyncStream<Result<[Sport], Error>>.Continuation!
+      self.responseStream = AsyncStream { responseContinuation = $0 }
+      self.responseContinuation = responseContinuation
+    }
 
-  func complete(with items: [Sport] = [], completion: @escaping () -> Void) {
-    responseContinuation.yield(.success(items))
-    responseContinuation.onTermination = { _ in
-      completion()
+    func load() async -> LoadSportsResult {
+      loadCallCount += 1
+
+      let result = await responseStream.first(where: { _ in true })!
+      responseContinuation.finish()
+
+      return result
+    }
+
+    func complete(with items: [Sport] = [], completion: @escaping () -> Void) {
+      responseContinuation.yield(.success(items))
+      responseContinuation.onTermination = { _ in
+        completion()
+      }
     }
   }
 }
