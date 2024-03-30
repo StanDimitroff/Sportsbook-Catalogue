@@ -1,6 +1,6 @@
 //
-//  CatalogueiOSTests.swift
-//  CatalogueiOSTests
+//  SportsViewControllerTests.swift
+//  SportsViewControllerTests
 //
 //  Created by Stanislav Dimitrov on 29.03.24.
 //
@@ -26,7 +26,7 @@ final class SportsViewController: UIViewController {
   }
 }
 
-final class CatalogueiOSTests: XCTestCase {
+final class SportsViewControllerTests: XCTestCase {
 
   func test_init_doesNotLoadSports() {
     let loader = SportsLoaderSpy()
