@@ -9,7 +9,7 @@ import Foundation
 
 public typealias LoadSportsResult = Result<[Sport], Error>
 
-public final class RemoteSportsLoader {
+public final class RemoteSportsLoader: SportsLoader {
   private let request: URLRequest
   private let client: HTTPClient
 

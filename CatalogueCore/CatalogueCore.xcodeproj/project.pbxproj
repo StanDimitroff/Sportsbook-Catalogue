@@ -21,6 +21,7 @@
 		44A01ADB2BB6BDFF0093E53C /* CatalogueiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01ADA2BB6BDFF0093E53C /* CatalogueiOSTests.swift */; };
 		44A01ADC2BB6BDFF0093E53C /* CatalogueiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 44A01AD02BB6BDFE0093E53C /* CatalogueiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44A01AE42BB6BEE90093E53C /* Catalogue.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44A01AE32BB6BEE90093E53C /* Catalogue.storyboard */; };
+		44A01AE82BB8166C0093E53C /* SportsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01AE72BB8166C0093E53C /* SportsLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		44A01AD52BB6BDFF0093E53C /* CatalogueiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatalogueiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A01ADA2BB6BDFF0093E53C /* CatalogueiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueiOSTests.swift; sourceTree = "<group>"; };
 		44A01AE32BB6BEE90093E53C /* Catalogue.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Catalogue.storyboard; sourceTree = "<group>"; };
+		44A01AE72BB8166C0093E53C /* SportsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				44A01A8A2BB6A93F0093E53C /* SportsMapper.swift */,
 				44A01A8C2BB6A9660093E53C /* RemoteSport.swift */,
 				44A01A902BB6B28A0093E53C /* URLSessionClient.swift */,
+				44A01AE72BB8166C0093E53C /* SportsLoader.swift */,
 			);
 			path = SportsAPI;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				44A01A8B2BB6A93F0093E53C /* SportsMapper.swift in Sources */,
 				44A01A872BB6A8BE0093E53C /* RemoteSportsLoader.swift in Sources */,
 				44A01A892BB6A8E10093E53C /* HTTPClient.swift in Sources */,
+				44A01AE82BB8166C0093E53C /* SportsLoader.swift in Sources */,
 				44A01A8D2BB6A9660093E53C /* RemoteSport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
