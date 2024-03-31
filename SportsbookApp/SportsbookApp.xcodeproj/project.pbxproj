@@ -13,7 +13,26 @@
 		44279A0A2BB9727E00C6BB04 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 44279A092BB9727E00C6BB04 /* Base */; };
 		44279A0C2BB9727E00C6BB04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44279A0B2BB9727E00C6BB04 /* Assets.xcassets */; };
 		44279A0F2BB9727E00C6BB04 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 44279A0E2BB9727E00C6BB04 /* Base */; };
+		44279A192BB9735000C6BB04 /* CatalogueCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44279A172BB9735000C6BB04 /* CatalogueCore.framework */; };
+		44279A1A2BB9735000C6BB04 /* CatalogueCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44279A172BB9735000C6BB04 /* CatalogueCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44279A1B2BB9735000C6BB04 /* CatalogueiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44279A182BB9735000C6BB04 /* CatalogueiOS.framework */; };
+		44279A1C2BB9735000C6BB04 /* CatalogueiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 44279A182BB9735000C6BB04 /* CatalogueiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		44279A1D2BB9735000C6BB04 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				44279A1C2BB9735000C6BB04 /* CatalogueiOS.framework in Embed Frameworks */,
+				44279A1A2BB9735000C6BB04 /* CatalogueCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		442799FF2BB9727E00C6BB04 /* SportsbookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsbookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +43,8 @@
 		44279A0B2BB9727E00C6BB04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44279A0E2BB9727E00C6BB04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44279A102BB9727E00C6BB04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44279A172BB9735000C6BB04 /* CatalogueCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CatalogueCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44279A182BB9735000C6BB04 /* CatalogueiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CatalogueiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44279A1B2BB9735000C6BB04 /* CatalogueiOS.framework in Frameworks */,
+				44279A192BB9735000C6BB04 /* CatalogueCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +65,7 @@
 			children = (
 				44279A012BB9727E00C6BB04 /* SportsbookApp */,
 				44279A002BB9727E00C6BB04 /* Products */,
+				44279A162BB9735000C6BB04 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +91,15 @@
 			path = SportsbookApp;
 			sourceTree = "<group>";
 		};
+		44279A162BB9735000C6BB04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44279A172BB9735000C6BB04 /* CatalogueCore.framework */,
+				44279A182BB9735000C6BB04 /* CatalogueiOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,6 +110,7 @@
 				442799FB2BB9727D00C6BB04 /* Sources */,
 				442799FC2BB9727D00C6BB04 /* Frameworks */,
 				442799FD2BB9727D00C6BB04 /* Resources */,
+				44279A1D2BB9735000C6BB04 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -298,8 +332,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,8 +360,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
