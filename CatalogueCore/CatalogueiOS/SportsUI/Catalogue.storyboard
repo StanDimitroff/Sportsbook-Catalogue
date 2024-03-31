@@ -11,7 +11,7 @@
         <!--Sports-->
         <scene sceneID="ESo-df-wpz">
             <objects>
-                <tableViewController title="Sports" id="68d-CV-cMF" customClass="SportsViewController" customModule="CatalogueiOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SportsViewController" title="Sports" id="68d-CV-cMF" customClass="SportsViewController" customModule="CatalogueiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="UTX-Gs-en6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,7 +52,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h85-uw-HKA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="608" y="-76"/>
+            <point key="canvasLocation" x="931" y="-77"/>
         </scene>
     </scenes>
     <resources>
