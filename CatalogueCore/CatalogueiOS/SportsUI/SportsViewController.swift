@@ -42,7 +42,7 @@ public final class SportsViewController: UITableViewController {
 
   public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let sport = sports[indexPath.row]
-    let cell = SportCell()
+    let cell = tableView.dequeueReusableCell(withIdentifier: "SportCell", for: indexPath) as! SportCell
     cell.nameLabel.text = sport.name
     return cell
   }
