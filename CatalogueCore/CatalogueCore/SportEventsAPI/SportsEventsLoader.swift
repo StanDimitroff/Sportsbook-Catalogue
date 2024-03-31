@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+public protocol SportEventsLoader {
+
+  func load() async -> LoadSportEventsResult
+}
