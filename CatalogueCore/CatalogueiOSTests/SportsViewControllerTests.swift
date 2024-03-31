@@ -11,6 +11,14 @@ import CatalogueiOS
 
 final class SportsViewControllerTests: XCTestCase {
 
+  func test_view_hasTitle() {
+    let (sut, _) = makeSUT()
+
+    sut.loadViewIfNeeded()
+
+    XCTAssertEqual(sut.title, "Sports")
+  }
+
   func test_init_doesNotLoadSports() {
     let (_, loader) = makeSUT()
 
