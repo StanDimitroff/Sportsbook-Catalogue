@@ -9,7 +9,7 @@ import Foundation
 
 struct RemoteSportEvent: Decodable {
   let name: String
-  let date: Date
+  let date: String
   let primaryMarket: RemotePrimaryMarket
 }
 
@@ -20,9 +20,9 @@ struct RemotePrimaryMarket: Decodable {
 }
 
 struct RemoteRunner: Decodable {
-  let name: String
+  let name: String?
   let totalGoals: Int?
-  let odds: [RemoteOdd]
+  let odds: RemoteOdd
 }
 
 struct RemoteOdd: Decodable {
