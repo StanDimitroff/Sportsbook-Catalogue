@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "8A6EE4B3-3550-416E-AD16-E01EAFBA7FE2",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CatalogueCore.xcodeproj",
+        "identifier" : "44A01AD42BB6BDFF0093E53C",
+        "name" : "CatalogueiOSTests"
+      }
+    }
+  ],
+  "version" : 1
+}
