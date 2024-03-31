@@ -13,11 +13,15 @@ public final class SportsViewController: UITableViewController {
   private var loader: SportsLoader?
   private var sports: [Sport] = []
 
-  public convenience init(loader: SportsLoader) {
-    self.init()
+  public init?(coder: NSCoder, loader: SportsLoader) {
     self.loader = loader
+    super.init(coder: coder)
   }
-
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   public override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -38,7 +42,7 @@ public final class SportsViewController: UITableViewController {
 
   public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let sport = sports[indexPath.row]
-    let cell = SportCell()
+    let cell = tableView.dequeueReusableCell(withIdentifier: "SportCell", for: indexPath) as! SportCell
     cell.nameLabel.text = sport.name
     return cell
   }

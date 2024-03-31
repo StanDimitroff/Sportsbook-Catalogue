@@ -11,6 +11,14 @@ import CatalogueiOS
 
 final class SportsViewControllerTests: XCTestCase {
 
+  func test_view_hasTitle() {
+    let (sut, _) = makeSUT()
+
+    sut.loadViewIfNeeded()
+
+    XCTAssertEqual(sut.title, "Sports")
+  }
+
   func test_init_doesNotLoadSports() {
     let (_, loader) = makeSUT()
 
@@ -87,7 +95,11 @@ final class SportsViewControllerTests: XCTestCase {
   // MARK: - Helpers
   private func makeSUT() -> (SportsViewController, SportsLoaderSpy) {
     let loader = SportsLoaderSpy()
-    let sut = SportsViewController(loader: loader)
+    let bundle = Bundle(for: SportsViewController.self)
+    let storyboard = UIStoryboard(name: "Catalogue", bundle: bundle)
+    let sut = storyboard.instantiateInitialViewController { coder in
+      return SportsViewController(coder: coder, loader: loader)
+    }!
 
     return (sut, loader)
   }

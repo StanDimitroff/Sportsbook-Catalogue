@@ -9,6 +9,5 @@ import UIKit
 
 public final class SportCell: UITableViewCell {
 
-  public let nameLabel = UILabel()
-
+  @IBOutlet public var nameLabel: UILabel!
 }
