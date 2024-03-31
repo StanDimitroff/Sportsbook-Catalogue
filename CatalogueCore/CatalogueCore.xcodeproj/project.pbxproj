@@ -14,6 +14,7 @@
 		44279A2B2BB99AC000C6BB04 /* RemoteSportEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44279A2A2BB99AC000C6BB04 /* RemoteSportEvent.swift */; };
 		44279A2D2BB99F8F00C6BB04 /* SportsEventsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44279A2C2BB99F8F00C6BB04 /* SportsEventsLoader.swift */; };
 		44279A2F2BB9A46E00C6BB04 /* LoadSportEventsEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44279A2E2BB9A46E00C6BB04 /* LoadSportEventsEndToEndTests.swift */; };
+		44279A322BB9AAEA00C6BB04 /* SportEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44279A312BB9AAEA00C6BB04 /* SportEventsViewController.swift */; };
 		44A01A712BB45F020093E53C /* CatalogueCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A01A682BB45F020093E53C /* CatalogueCore.framework */; };
 		44A01A762BB45F020093E53C /* LoadSportsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A01A752BB45F020093E53C /* LoadSportsUseCaseTests.swift */; };
 		44A01A772BB45F020093E53C /* CatalogueCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 44A01A6B2BB45F020093E53C /* CatalogueCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -80,6 +81,7 @@
 		44279A2A2BB99AC000C6BB04 /* RemoteSportEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSportEvent.swift; sourceTree = "<group>"; };
 		44279A2C2BB99F8F00C6BB04 /* SportsEventsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsEventsLoader.swift; sourceTree = "<group>"; };
 		44279A2E2BB9A46E00C6BB04 /* LoadSportEventsEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSportEventsEndToEndTests.swift; sourceTree = "<group>"; };
+		44279A312BB9AAEA00C6BB04 /* SportEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportEventsViewController.swift; sourceTree = "<group>"; };
 		44A01A682BB45F020093E53C /* CatalogueCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CatalogueCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44A01A6B2BB45F020093E53C /* CatalogueCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CatalogueCore.h; sourceTree = "<group>"; };
 		44A01A702BB45F020093E53C /* CatalogueCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatalogueCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +158,14 @@
 			path = SportEventsAPI;
 			sourceTree = "<group>";
 		};
+		44279A302BB9AAC200C6BB04 /* SportEventsUI */ = {
+			isa = PBXGroup;
+			children = (
+				44279A312BB9AAEA00C6BB04 /* SportEventsViewController.swift */,
+			);
+			path = SportEventsUI;
+			sourceTree = "<group>";
+		};
 		44A01A5E2BB45F020093E53C = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +194,7 @@
 		44A01A6A2BB45F020093E53C /* CatalogueCore */ = {
 			isa = PBXGroup;
 			children = (
+				44A01A902BB6B28A0093E53C /* URLSessionClient.swift */,
 				44279A232BB999D000C6BB04 /* SportEventsAPI */,
 				44279A202BB995B900C6BB04 /* SportEvents */,
 				44A01A852BB6A8950093E53C /* SportsAPI */,
@@ -218,7 +229,6 @@
 				44A01A882BB6A8E10093E53C /* HTTPClient.swift */,
 				44A01A8A2BB6A93F0093E53C /* SportsMapper.swift */,
 				44A01A8C2BB6A9660093E53C /* RemoteSport.swift */,
-				44A01A902BB6B28A0093E53C /* URLSessionClient.swift */,
 				44A01AE72BB8166C0093E53C /* SportsLoader.swift */,
 			);
 			path = SportsAPI;
@@ -227,7 +237,9 @@
 		44A01ACF2BB6BDFE0093E53C /* CatalogueiOS */ = {
 			isa = PBXGroup;
 			children = (
+				44279A1E2BB975B900C6BB04 /* Catalogue.storyboard */,
 				44A01AF02BB81E870093E53C /* SportsUI */,
+				44279A302BB9AAC200C6BB04 /* SportEventsUI */,
 				44A01AD02BB6BDFE0093E53C /* CatalogueiOS.h */,
 			);
 			path = CatalogueiOS;
@@ -253,7 +265,6 @@
 			children = (
 				44A01AF12BB81E990093E53C /* SportsViewController.swift */,
 				44A01AF32BB81F160093E53C /* SportCell.swift */,
-				44279A1E2BB975B900C6BB04 /* Catalogue.storyboard */,
 			);
 			path = SportsUI;
 			sourceTree = "<group>";
@@ -467,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44279A322BB9AAEA00C6BB04 /* SportEventsViewController.swift in Sources */,
 				44A01AF42BB81F160093E53C /* SportCell.swift in Sources */,
 				44A01AF22BB81E990093E53C /* SportsViewController.swift in Sources */,
 			);
