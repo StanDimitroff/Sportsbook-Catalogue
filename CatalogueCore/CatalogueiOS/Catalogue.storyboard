@@ -54,6 +54,49 @@
             </objects>
             <point key="canvasLocation" x="931" y="-77"/>
         </scene>
+        <!--Sport Events View Controller-->
+        <scene sceneID="F4I-Dg-12L">
+            <objects>
+                <tableViewController id="0V3-pt-E0o" customClass="SportEventsViewController" customModule="CatalogueiOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="FRi-HU-sKo">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SportEventCell" rowHeight="225" id="qgm-qo-Uy8" customClass="SportEventCell" customModule="CatalogueiOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="225"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qgm-qo-Uy8" id="Da3-3T-UPr">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="225"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsE-s0-q08">
+                                            <rect key="frame" x="16" y="102" width="45" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RsE-s0-q08" firstAttribute="centerY" secondItem="Da3-3T-UPr" secondAttribute="centerY" id="GF6-HD-HXM"/>
+                                        <constraint firstItem="RsE-s0-q08" firstAttribute="leading" secondItem="Da3-3T-UPr" secondAttribute="leading" constant="16" id="uax-ir-Ffl"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="RsE-s0-q08" id="cxg-LY-Uh4"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="0V3-pt-E0o" id="MV7-5e-iGX"/>
+                            <outlet property="delegate" destination="0V3-pt-E0o" id="xvS-uQ-ygv"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RxW-Oc-FgX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1692" y="-77"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

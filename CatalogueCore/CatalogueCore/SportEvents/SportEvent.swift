@@ -24,7 +24,7 @@ public struct PrimaryMarket: Equatable {
   public enum MarketType: String {
     case winDrawWin = "WIN_DRAW_WIN"
     case matchBetting = "MATCH_BETTING"
-    case totalGoalsIntMatch = "TOTAL_GOALS_IN_MATCH"
+    case totalGoalsInMatch = "TOTAL_GOALS_IN_MATCH"
   }
 
   public let name: String

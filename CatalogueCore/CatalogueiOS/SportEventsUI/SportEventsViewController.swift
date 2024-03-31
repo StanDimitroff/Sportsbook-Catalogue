@@ -35,4 +35,11 @@ final class SportEventsViewController: UITableViewController {
   public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     sportEvents.count
   }
+
+  public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let sportEvent = sportEvents[indexPath.row]
+    let cell = tableView.dequeueReusableCell(withIdentifier: "SportEventCell", for: indexPath) as! SportEventCell
+    cell.nameLabel.text = sportEvent.name
+    return cell
+  }
 }
