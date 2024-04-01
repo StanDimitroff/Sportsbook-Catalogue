@@ -75,8 +75,8 @@ private extension Array where Element == RemoteRunner {
   }
 }
 
-private extension RemoteOdd {
-  func toModel() -> Odd {
-    Odd(numerator: self.numerator, denominator: self.denominator)
+private extension RemoteOdds {
+  func toModel() -> Odds {
+    Odds(numerator: self.numerator, denominator: self.denominator)
   }
 }

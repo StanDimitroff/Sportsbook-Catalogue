@@ -12,12 +12,11 @@ public final class SportEventCell: UITableViewCell {
   @IBOutlet public var marketLabel: UILabel!
   @IBOutlet public var matchLabel: UILabel!
 
-  @IBOutlet public var homeNumeratorLabel: UILabel!
-  @IBOutlet public var homeDenominatorLabel: UILabel!
+  @IBOutlet public var odsStackView: UIStackView!
 
-  @IBOutlet public var drawNumeratorLabel: UILabel!
-  @IBOutlet public var drawDenominatorLabel: UILabel!
+  public override func prepareForReuse() {
+    super.prepareForReuse()
 
-  @IBOutlet public var awayNumeratorLabel: UILabel!
-  @IBOutlet public var awayDenominatorLabel: UILabel!
+    odsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+  }
 }
