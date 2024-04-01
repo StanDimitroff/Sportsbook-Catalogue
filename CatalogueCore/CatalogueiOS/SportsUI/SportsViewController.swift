@@ -13,6 +13,8 @@ public final class SportsViewController: UITableViewController {
   private var loader: SportsLoader?
   private var sports: [Sport] = []
 
+  weak var coordinator: MainCoordinator?
+
   public init?(coder: NSCoder, loader: SportsLoader) {
     self.loader = loader
     super.init(coder: coder)
@@ -45,5 +47,9 @@ public final class SportsViewController: UITableViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: "SportCell", for: indexPath) as! SportCell
     cell.nameLabel.text = sport.name
     return cell
+  }
+
+  public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    coordinator?.goToSportEvents(for: sports[indexPath.row])
   }
 }

@@ -13,9 +13,13 @@ final class SportEventsViewController: UITableViewController {
   private var loader: SportEventsLoader?
   private var sportEvents: [SportEvent] = []
 
-  convenience init(loader: SportEventsLoader) {
-    self.init()
+  public init?(coder: NSCoder, loader: SportEventsLoader) {
     self.loader = loader
+    super.init(coder: coder)
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 
   override func viewDidLoad() {
