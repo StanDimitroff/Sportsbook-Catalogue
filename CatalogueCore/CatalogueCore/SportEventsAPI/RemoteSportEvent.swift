@@ -20,6 +20,7 @@ struct RemotePrimaryMarket: Decodable {
 }
 
 struct RemoteRunner: Decodable {
+  let marketType: String
   let name: String?
   let totalGoals: Int?
   let odds: RemoteOdd
