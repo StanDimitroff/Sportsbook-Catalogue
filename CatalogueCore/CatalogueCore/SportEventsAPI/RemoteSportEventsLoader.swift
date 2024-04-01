@@ -66,6 +66,7 @@ private extension Array where Element == RemoteRunner {
   func toModels() -> [Runner] {
     map {
       Runner(
+        marketType: PrimaryMarket.MarketType(rawValue: $0.marketType)!,
         name: $0.name,
         totalGoals: $0.totalGoals,
         odds: $0.odds.toModel()
