@@ -80,6 +80,7 @@ struct SportEventPresentableModel {
 extension Array where Element == SportEvent {
   func toTableModel() -> [TableModel] {
     let groupsByDate: [Date: [SportEvent]] = Dictionary(grouping: self, by: { $0.date })
+    let sortedGroups = groupsByDate.sorted { $0.key < $1.key }
 
     let nameTransformer: (SportEvent) -> (home: String, away: String) = {
       let separator = $0.primaryMarket.type == .matchBetting ? " vs " : " v "
@@ -119,7 +120,7 @@ extension Array where Element == SportEvent {
       return $0.primaryMarket.runners.toPresentableGoalsModels()
     }
 
-    return groupsByDate.map { (date, events) in
+    return sortedGroups.map { (date, events) in
       TableModel(
         date: dateTransformer(date),
         events: events.map {
