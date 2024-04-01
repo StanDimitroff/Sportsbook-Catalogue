@@ -42,9 +42,9 @@ public struct Runner: Equatable {
   public let marketType: PrimaryMarket.MarketType
   public let name: String?
   public let totalGoals: Int?
-  public let odds: Odd
+  public let odds: Odds
 
-  public init(marketType: PrimaryMarket.MarketType, name: String?, totalGoals: Int?, odds: Odd) {
+  public init(marketType: PrimaryMarket.MarketType, name: String?, totalGoals: Int?, odds: Odds) {
     self.marketType = marketType
     self.name = name
     self.totalGoals = totalGoals
@@ -52,7 +52,7 @@ public struct Runner: Equatable {
   }
 }
 
-public struct Odd: Equatable {
+public struct Odds: Equatable {
   public let numerator: Int
   public let denominator: Int
 

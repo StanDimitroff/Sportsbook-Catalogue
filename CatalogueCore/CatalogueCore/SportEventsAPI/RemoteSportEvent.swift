@@ -23,10 +23,10 @@ struct RemoteRunner: Decodable {
   let marketType: String
   let name: String?
   let totalGoals: Int?
-  let odds: RemoteOdd
+  let odds: RemoteOdds
 }
 
-struct RemoteOdd: Decodable {
+struct RemoteOdds: Decodable {
   let numerator: Int
   let denominator: Int
 }
