@@ -11,7 +11,7 @@ import CatalogueCore
 final class SportEventsViewController: UITableViewController {
 
   private var loader: SportEventsLoader?
-  private var sportEvents: [SportEventPresentableModel] = []
+  private var tableModel: [TableModel] = []
 
   public init?(coder: NSCoder, loader: SportEventsLoader) {
     self.loader = loader
@@ -27,21 +27,21 @@ final class SportEventsViewController: UITableViewController {
 
     Task {
       let result = await loader?.load()
-      sportEvents = (try? result?.get())?.toPresentableModels() ?? []
+      tableModel = (try? result?.get())?.toTableModel() ?? []
       tableView.reloadData()
     }
   }
 
   public override func numberOfSections(in tableView: UITableView) -> Int {
-    1
+    tableModel.count
   }
 
   public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    sportEvents.count
+    tableModel[section].events.count
   }
 
   public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let sportEvent = sportEvents[indexPath.row]
+    let sportEvent = tableModel[indexPath.section].events[indexPath.row]
     let cell = tableView.dequeueReusableCell(withIdentifier: "SportEventCell", for: indexPath) as! SportEventCell
     cell.marketLabel.text = sportEvent.marketName
     cell.matchLabel.text = sportEvent.eventName
@@ -57,6 +57,15 @@ final class SportEventsViewController: UITableViewController {
 
     return cell
   }
+
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    tableModel[section].date
+  }
+}
+
+struct TableModel {
+  let date: String
+  let events: [SportEventPresentableModel]
 }
 
 struct SportEventPresentableModel {
@@ -69,7 +78,8 @@ struct SportEventPresentableModel {
 }
 
 extension Array where Element == SportEvent {
-  func toPresentableModels() -> [SportEventPresentableModel] {
+  func toTableModel() -> [TableModel] {
+    let groupsByDate: [Date: [SportEvent]] = Dictionary(grouping: self, by: { $0.date })
 
     let nameTransformer: (SportEvent) -> (home: String, away: String) = {
       let separator = $0.primaryMarket.type == .matchBetting ? " vs " : " v "
@@ -78,6 +88,13 @@ extension Array where Element == SportEvent {
       let awayTeam = String(teamNames[1])
 
       return (homeTeam, awayTeam)
+    }
+
+    let dateTransformer: (Date) -> String = {
+      let weekDay = $0.formatted(Date.FormatStyle().weekday(.wide))
+      let day = $0.formatted(Date.FormatStyle().day(.ordinalOfDayInMonth))
+      let month = $0.formatted(Date.FormatStyle().month(.wide))
+      return "\(weekDay) \(day) \(month)"
     }
 
     let homeDrawAwayTransformer: (SportEvent) -> [SportEventPresentableModel.RunnerOdds] = {
@@ -102,11 +119,16 @@ extension Array where Element == SportEvent {
       return $0.primaryMarket.runners.toPresentableGoalsModels()
     }
 
-    return map {
-      SportEventPresentableModel(
-        marketName: $0.primaryMarket.name,
-        eventName: "\(nameTransformer($0).home)\n\n\(nameTransformer($0).away)",
-        odds: $0.primaryMarket.type == .totalGoalsInMatch ? totalGoalsTransformer($0) : homeDrawAwayTransformer($0)
+    return groupsByDate.map { (date, events) in
+      TableModel(
+        date: dateTransformer(date),
+        events: events.map {
+          SportEventPresentableModel(
+            marketName: $0.primaryMarket.name,
+            eventName: "\(nameTransformer($0).home)\n\n\(nameTransformer($0).away)",
+            odds: $0.primaryMarket.type == .totalGoalsInMatch ? totalGoalsTransformer($0) : homeDrawAwayTransformer($0)
+          )
+        }
       )
     }
   }

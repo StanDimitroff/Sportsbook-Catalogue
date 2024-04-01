@@ -42,10 +42,20 @@ public final class RemoteSportEventsLoader: SportEventsLoader {
 
 private extension Array where Element == RemoteSportEvent {
   func toModels() -> [SportEvent] {
-    map {
+    let dateTransformer: (String) -> Date = {
+      let formatter = ISO8601DateFormatter()
+      let date = formatter.date(from: $0) ?? Date.init()
+
+        let cal: Calendar = Calendar.current
+      let comp: DateComponents = cal.dateComponents([.day, .month, .year], from: date)
+
+      return cal.date(from: comp) ?? Date.init()
+    }
+
+    return map {
       SportEvent(
         name: $0.name,
-        date: Date(),
+        date: dateTransformer($0.date),
         primaryMarket: $0.primaryMarket.toModel()
       )
     }
